@@ -8,9 +8,8 @@ namespace AsciiVideoPlayer
     class Program
     {
        
-        private static string _Content;
         private static string Path;
-        private static GifImage a;
+        private static GifImage gifImage;
         static void Main(string[] args)
         {
             //Program entry point
@@ -20,7 +19,7 @@ namespace AsciiVideoPlayer
             Console.WindowHeight = Console.LargestWindowHeight;
             try
             {
-                a = new GifImage(Path);
+                gifImage = new GifImage(Path);
                 var t = new Timer(TimerTick, null, 0, 60);
             }
             catch (Exception e)
@@ -32,7 +31,7 @@ namespace AsciiVideoPlayer
         }
         private static void TimerTick(object o)
         {
-            GenerateAscii(a.GetNextFrame());
+            GenerateAscii(gifImage.GetNextFrame());
             GC.Collect();
         }
 
@@ -40,8 +39,7 @@ namespace AsciiVideoPlayer
         {
             //Console.Clear();
             Console.SetCursorPosition(0, 0);
-            _Content = AsciiGenerator.ConvertToAscii(i);
-            Console.Write(_Content);
+            Console.Write(AsciiGenerator.ConvertToAscii(i));
             i.Dispose();
         }
 

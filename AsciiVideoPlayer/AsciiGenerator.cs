@@ -53,7 +53,7 @@ namespace AsciiVideoPlayer
 
             //폭*높이에 맞는 새 Bitmap 생성
             Bitmap result = new Bitmap(asciiWidth, asciiHeight);
-            Graphics g = Graphics.FromImage((Image)result);
+            Graphics g = Graphics.FromImage(result);
             g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
             g.DrawImage(inputBitmap, 0, 0, asciiWidth, asciiHeight);
             g.Dispose();
